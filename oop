@@ -1,0 +1,255 @@
+<?php
+class Car{
+	public $model;
+	public $color = "yellow";
+}
+
+$bmw = new Car();
+$volvo = new Car();
+
+echo $bmw->color;
+echo "<br>";
+echo $volvo->color;
+
+echo "<br>";
+echo "*************************** Setter getter to access private ******************************";
+echo "<br>";
+
+class Car1{
+	public $model = "Maruti";
+	private $color = "green";
+	
+	public function setColor($color){
+		$this->color = $color;
+	}
+	
+	public function getColor(){
+		return "The color is ".$this->color;
+	}
+} 
+
+$carObj = new Car1();
+echo $carObj->model;
+echo "<br>";
+echo $carObj->getColor();
+
+echo "<br>";
+echo "**********************************************************************";
+echo "<br>";
+
+class Car2{
+	public function sayHello(){
+		return "hello";
+	}
+	
+	public function sayHelloAgain(){
+		return "hello again";
+	}
+}
+
+$carTest = new Car2();
+echo $carTest->sayHello();
+
+echo "<br>";
+echo "**************************** replace string *****************************";
+echo "<br>";
+
+$string = ",test,abc,again,hello,";
+$replaceComma = str_replace(',',' ',$string); 
+$strToArray = explode(" ",trim($replaceComma));
+foreach($strToArray as $key => $value){
+	echo "Key is ".$key." and value is ".$value;
+	echo "<br>";
+}
+
+echo "<br>";
+echo "*************************** Constructor *****************************";
+echo "<br>";
+
+class Car3{
+	private $model;
+	
+	public function __construct($model){
+		$this->model = $model;
+	}
+	
+	public function getModelBMW(){
+		return $this->model;
+	}
+}
+
+$car3 = new Car3("BMW");
+echo $car3->getModelBMW();
+
+echo "<br>";
+echo "***************************** protected with inheritance *******************************";
+echo "<br>";
+
+class Car4{
+	protected $model;
+	
+	public function setModel($model){
+		return $this->model = $model;
+	}
+}
+
+class sportsCar extends Car4{
+	public function hello(){
+		return "Hello I am a ".$this->model;
+	}
+}
+
+$sportsCar = new sportsCar();
+$sportsCar->setModel("TATA");
+echo $sportsCar->hello();
+
+echo "<br>";
+echo "***************************** override the parent’s properties and methods in the child class *******************************";
+echo "<br>";
+
+class Car5{
+	public function hello(){
+		return "beep";
+	}
+} 
+
+class sportsCar1 extends Car5{
+	public function hello(){
+		return "hello";
+	}
+}
+$car5Obj = new sportsCar1();
+echo $car5Obj->hello();
+
+echo "<br>";
+echo "***************************** prevent the child class from overriding the parent’s methods *******************************";
+echo "<br>";
+
+class Car6{
+	//final
+	public function horn(){
+		return "Good";
+	}
+} 
+
+class sportsCar2 extends car6{
+	public function horn(){
+		return "Bad";
+	}
+}
+
+$car6Obj = new sportsCar2();
+echo $car6Obj->horn();
+
+echo "<br>";
+echo "***************************** interface *******************************";
+echo "<br>";
+
+interface Shape {
+  public function calcArea();
+}
+
+class Circle implements Shape {
+  private $radius;
+   
+  public function __construct($radius)
+  {
+    $this -> radius = $radius;
+  }
+  
+  // calcArea calculates the area of circles 
+  public function calcArea()
+  {
+    return $this -> radius * $this -> radius * pi();
+  }
+}
+$circ = new Circle(3);
+echo $circ -> calcArea();
+
+echo "<br>";
+echo "***************************** Abstract *******************************";
+echo "<br>";
+
+abstract class newCar {
+  // Abstract classes can have properties
+  protected $tankVolume;
+ 
+  // Abstract classes can have non abstract methods
+  public function setTankVolume($volume)
+  {
+    $this -> tankVolume = $volume;
+  }
+ 
+  // Abstract method
+  abstract public function calcNumMilesOnFullTank();
+}
+
+class Honda extends newCar {
+  // Since we inherited abstract method, we need to define it in the child class, 
+  // by adding code to the method's body.
+  public function calcNumMilesOnFullTank()
+  {
+    $miles = $this -> tankVolume*30;
+    return $miles;
+  }
+}
+
+class Toyota extends newCar {
+  // Since we inherited abstract method, we need to define it in the child class, 
+  // by adding code to the method's body.
+  public function calcNumMilesOnFullTank()
+  {
+    return $miles = $this -> tankVolume*33;
+  }
+ 
+  public function getColor()
+  {
+    return "beige";
+  }
+}
+
+$toyota1 = new Toyota();
+$toyota1 -> setTankVolume(10);
+echo $toyota1 -> calcNumMilesOnFullTank();//330
+echo "<br>";
+echo $toyota1 -> getColor();//beige
+
+
+echo "<br>";
+echo "***************************** german character *******************************";
+echo "<br>";
+$val = "Jörg Bomke";
+$val =  str_replace('ö', 'o', $val);
+echo $val;
+
+
+echo "<br>";
+echo "***************************** value check *******************************";
+echo "<br>";
+
+$a = '1';
+$b = &$a;
+$b = "2$b";
+echo $a.", ".$b;
+
+echo "<br>";
+echo "***************************** page name *******************************";
+echo "<br>";
+
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+echo $actual_link;
+echo "<br>";
+echo $_SERVER['HTTP_USER_AGENT'];
+
+echo "<br>";
+$a = 1;
+$test = ($a=1)?"true":"false";
+echo $test;
+
+echo "<br>";
+echo $_SERVER["REMOTE_ADDR"];
+
+
+
+
+?>
